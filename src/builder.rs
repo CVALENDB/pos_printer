@@ -266,15 +266,12 @@ impl EscPosBuilder {
         let size = opts.module_size.clamp(1, 16);
 
         let a = self.align.esc_pos();
-        
         self.raw(&[0x1B, 0x61, a]);
-        
+
         self.raw(&[0x1D, 0x28, 0x6B, 0x04, 0x00, 0x31, 0x41, 0x32, 0x00]);
-       
         self.raw(&[0x1D, 0x28, 0x6B, 0x03, 0x00, 0x31, 0x43, size]);
-        
         self.raw(&[0x1D, 0x28, 0x6B, 0x03, 0x00, 0x31, 0x45, ec]);
-   
+
         let len = bytes.len() + 3;
         self.raw(&[
             0x1D,
@@ -284,10 +281,9 @@ impl EscPosBuilder {
             ((len >> 8) & 0xFF) as u8,
             0x31,
             0x50,
-            0x30,
         ]);
         self.raw(bytes);
-   
+        
         self.raw(&[0x1D, 0x28, 0x6B, 0x03, 0x00, 0x31, 0x51, 0x30]);
         self.newline();
         self.raw(&[0x1B, 0x61, 0x00]);
