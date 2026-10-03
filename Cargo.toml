@@ -1,0 +1,15 @@
+[package]
+name = "pos_printer"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+description = "Gestor genérico de impresoras POS (ESC/POS) con trait Printable"
+
+[dependencies]
+nusb = { version = "0.2", features = ["tokio"] }
+tokio = { version = "1", features = ["net", "io-util", "time", "sync"] }
+async-trait = "0.1"
+thiserror = "2"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full"] }
