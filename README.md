@@ -35,7 +35,7 @@ println!("{:?}", pm.current());                // impresora activa
 pm.print(&documento).await?;                   // cualquier T: Printable
 ```
 
-## Builder fluido: `Document`
+## Builder: `Document`
 
 Los modificadores se aplican al **último elemento** añadido.
 
@@ -57,7 +57,7 @@ pm.print(&doc).await?;
 
 ## El contrato `Printable`
 
-Para tipos propios con lógica (datos de tu ERP):
+Para tipos propios con lógica:
 
 ```rust
 impl Printable for Recibo {
@@ -78,13 +78,6 @@ PrinterProfile::mm58()                       // 32 columnas
 PrinterProfile::mm80()                       // 48 columnas
 PrinterProfile::mm80().with_chars_per_line(42).with_margin(2)
 ```
-
-Si el contenido no queda centrado o hace saltos raros, probablemente tu impresora
-tiene menos columnas que `chars_per_line`. Corre `cargo run --example regla`,
-cuenta hasta dónde llega la línea y usa ese número.
-
-Nota: el QR y el código de barras los posiciona la impresora (centro/derecha); no
-aplican el margen en alineación izquierda.
 
 ## Ver sin imprimir
 
